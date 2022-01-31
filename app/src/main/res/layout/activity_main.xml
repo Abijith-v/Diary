@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darker_white"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:background="@color/darker_white"
+        android:id="@+id/navbar_frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navbar"/>
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+
+        android:id="@+id/bottom_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:outlineSpotShadowColor="@color/black"
+        android:layout_alignParentBottom="true"
+
+        android:elevation="50dp"
+        android:background="@drawable/semi_round"
+        android:backgroundTint="@color/white"
+        app:cnb_addRightInset="true"
+        app:cnb_addLeftInset="true"
+        app:cnb_addTopInset="true"
+        app:cnb_addBottomInset="true"
+        app:cnb_iconSize="30dp"
+
+        app:cnb_menuResource="@menu/bottom_nav"
+        app:cnb_radius="50dp"
+        app:cnb_unselectedColor="@color/bgcolor" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFabInHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:src="@drawable/add_icon"
+        android:layout_above="@+id/bottom_navbar"
+        app:rippleColor="@color/ripplecolor"
+        android:backgroundTint="@color/bgcolor"
+        android:layout_alignParentRight="true"
+        android:focusable="true"
+        android:clickable="true"
+        app:borderWidth="0dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"/>
+
+</RelativeLayout>

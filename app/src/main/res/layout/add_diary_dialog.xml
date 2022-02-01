@@ -1,66 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bgcolor"
+    android:background="@drawable/rounded_corners"
+    android:backgroundTint="@color/bgcolor"
+    android:id="@+id/dialogLayout"
     android:padding="10dp">
 
     <LinearLayout
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add new journal ?"
-            android:padding="5dp"
             android:layout_margin="20dp"
+            android:padding="5dp"
+            android:text="Add new journal ?"
             android:textColor="@color/white"
-            android:textSize="30sp"/>
+            android:textSize="22sp" />
 
 
         <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/dropDownSectionDialog"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+
+            <com.applandeo.materialcalendarview.CalendarView
+                android:visibility="gone"
+                android:id="@+id/calViewForDialog"
+                android:layout_width="wrap_content"
+                app:todayLabelColor="@color/darker_white"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:headerColor="@color/bgcolor"
+                app:selectionColor="@color/white"
+                app:pagesColor="@color/bgcolor"
+                app:abbreviationsBarColor="@color/bgcolor"
+                app:daysLabelsColor="@color/white"
+                app:headerLabelColor="@color/white"
+                app:abbreviationsLabelsColor="@color/white"
+                app:selectionLabelColor="@color/bgcolor"
+                app:type="one_day_picker"
+                />
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_margin="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/okButtonAddNewDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cornerRadius="25dp"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/bgcolor"
-                android:text="OK"
                 android:layout_margin="10dp"
-                android:textSize="20sp"
                 android:layout_weight="1"
-                android:padding="10dp"/>
+                android:backgroundTint="@color/white"
+                android:drawableRight="@drawable/tick_icon"
+                android:drawableTint="@color/bgcolor"
+                android:padding="10dp"
+                android:text="OK"
+                android:textColor="@color/bgcolor"
+                android:textSize="15sp"
+                app:cornerRadius="25dp" />
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/moreButtonAddNewDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cornerRadius="25dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/bgcolor"
-                android:text="More"
                 android:drawableRight="@drawable/down_arrow_icon"
                 android:drawableTint="@color/bgcolor"
-                android:textSize="20sp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:text="More"
+                android:textColor="@color/bgcolor"
+                android:textSize="15sp"
+                app:cornerRadius="25dp" />
 
         </LinearLayout>
 

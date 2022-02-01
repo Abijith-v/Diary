@@ -12,7 +12,10 @@
         android:id="@+id/navbar_frag_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navbar"/>
+        android:layout_above="@+id/bottom_navbar">
+
+
+    </RelativeLayout>
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
 

@@ -4,13 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".makeJournal">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/topBarMakeAJournal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make a journal here"
-        android:layout_centerInParent="true"
-        android:textSize="20sp"/>
+        android:background="@color/white">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/close_icon"
+                android:padding="5dp"
+                android:scaleY="1.2"
+                android:tint="@color/bgcolor"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="10dp"
+                android:scaleX="1.2"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/todaysDateInTopBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/bgcolor"
+                android:text="1 Feb 2022"
+                android:textSize="16sp"
+                android:drawableTint="@color/bgcolor"
+                android:drawableRight="@drawable/down_arrow_icon"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="5dp"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tick_icon"
+                android:scaleY="1.2"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp"
+                android:tint="@color/bgcolor"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleX="1.2"/>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:layout_below="@+id/topBarMakeAJournal"
+        android:layout_above="@+id/bottomBarAddJournal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:hint="Enter your title here"
+            android:textColor="@color/black"
+            android:textColorHint="@color/ripplecolor"
+            android:background="@null"
+            />
+
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:hint="Write your journal here"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomBarAddJournal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/selectColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tick_icon"
+            android:scaleY="1.2"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:tint="@color/bgcolor"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleX="1.2"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

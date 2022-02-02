@@ -14,46 +14,46 @@
         android:background="@color/white">
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/close_icon"
-                android:padding="5dp"
-                android:scaleY="1.2"
-                android:tint="@color/bgcolor"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_margin="10dp"
-                android:scaleX="1.2"/>
+        <ImageView
+            android:id="@+id/closeMakeJournal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close_icon"
+            android:padding="5dp"
+            android:scaleY="1.2"
+            android:tint="@color/bgcolor"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="10dp"
+            android:scaleX="1.2" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/todaysDateInTopBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="@color/bgcolor"
-                android:text="1 Feb 2022"
-                android:textSize="16sp"
-                android:drawableTint="@color/bgcolor"
-                android:drawableRight="@drawable/down_arrow_icon"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="5dp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/todaysDateInTopBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/bgcolor"
+            android:text="1 Feb 2022"
+            android:textSize="16sp"
+            android:drawableTint="@color/bgcolor"
+            android:drawableRight="@drawable/down_arrow_icon"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="5dp" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tick_icon"
-                android:scaleY="1.2"
-                android:layout_alignParentEnd="true"
-                android:padding="5dp"
-                android:tint="@color/bgcolor"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleX="1.2"/>
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tick_icon"
+            android:scaleY="1.2"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:tint="@color/bgcolor"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleX="1.2" />
 
 
     </RelativeLayout>
@@ -67,26 +67,28 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/titleJournal"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="26sp"
+            android:padding="10dp"
             android:hint="Enter your title here"
             android:textColor="@color/black"
             android:textColorHint="@color/ripplecolor"
-            android:background="@null"
-            />
+            android:background="@null" />
 
 
         <EditText
+            android:id="@+id/contentJournal"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
+            android:padding="10dp"
             android:textSize="14sp"
             android:hint="Write your journal here"
-            android:background="@null"
-            />
+            android:background="@null" />
 
     </LinearLayout>
 
@@ -95,21 +97,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/white">
+        android:background="@drawable/semi_round"
+        android:backgroundTint="@color/bgcolor">
 
         <ImageView
             android:id="@+id/selectColor"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/tick_icon"
-            android:scaleY="1.2"
+            android:layout_gravity="center"
+            android:src="@drawable/color_palette_icon"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
-            android:tint="@color/bgcolor"
+            android:tint="@color/white"
             android:layout_margin="10dp"
             android:clickable="true"
-            android:focusable="true"
-            android:scaleX="1.2"/>
+            android:focusable="true" />
+
+
+        <Spinner
+            android:layout_weight="1"
+            android:id="@+id/titleSize"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:dropDownSelector="@color/white"
+            />
+
+
+        <Spinner
+            android:layout_weight="1"
+            android:id="@+id/contentSize"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+
+            android:dropDownSelector="@color/white"
+            />
 
     </LinearLayout>
 

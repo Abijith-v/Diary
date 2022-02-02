@@ -12,13 +12,25 @@
         <LinearLayout
             android:visibility="visible"
             android:id="@+id/dropDownSectionDialog"
+            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a date"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                />
 
 
             <com.applandeo.materialcalendarview.CalendarView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/calViewForDialog"
                 android:layout_width="wrap_content"
                 app:todayLabelColor="@color/darker_white"
@@ -35,6 +47,42 @@
                 app:type="one_day_picker"
                 />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/moreButtonAddNewDialog"
+                    android:layout_weight="1"
+                    android:layout_width="40dp"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bgcolor"
+                    app:backgroundTint="@color/white"
+                    app:cornerRadius="20dp"
+                    android:text="cancel"
+                    android:layout_margin="20dp"
+                    android:drawableRight="@drawable/close_icon"
+                    android:drawableTint="@color/bgcolor"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/okButtonAddNewDialog"
+                    android:layout_weight="1"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/bgcolor"
+                    app:backgroundTint="@color/white"
+                    app:cornerRadius="20dp"
+                    android:textSize="12sp"
+                    android:text="ok"
+                    android:layout_margin="20dp"
+                    android:drawableRight="@drawable/tick_icon"
+                    android:drawableTint="@color/bgcolor"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

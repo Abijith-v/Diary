@@ -7,6 +7,17 @@
     android:background="@color/white"
     tools:context=".makeJournal">
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/journalPB"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/bgcolor"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        />
+
     <RelativeLayout
         android:id="@+id/topBarMakeAJournal"
         android:layout_width="match_parent"
@@ -123,7 +134,7 @@
             android:spinnerMode="dropdown"
             android:layout_margin="10dp"
             android:padding="5dp"
-            android:dropDownSelector="@color/white"
+            android:backgroundTint="@color/white"
             />
 
 
@@ -136,7 +147,7 @@
             android:layout_margin="10dp"
             android:padding="5dp"
 
-            android:dropDownSelector="@color/white"
+            android:backgroundTint="@color/white"
             />
 
     </LinearLayout>

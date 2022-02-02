@@ -19,15 +19,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 import com.jaredrummler.android.colorpicker.ColorPickerView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static com.jaredrummler.android.colorpicker.ColorPickerDialog.TYPE_CUSTOM;
@@ -38,6 +41,7 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
     ImageView colorSelector, close;
     Spinner titleSizeSelector, contentSizeSelector;
     EditText title, content;
+    CircularProgressIndicator pb;
 
     public final static int DIALOG_ID = 0;
 
@@ -53,6 +57,7 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         title = findViewById(R.id.titleJournal);
         content = findViewById(R.id.contentJournal);
         close = findViewById(R.id.closeMakeJournal);
+        pb = findViewById(R.id.journalPB);
 
         Integer textSizes[] = new Integer[30];
         for(int i = 0, size = 2; i < 30; i++, size += 2) {
@@ -63,9 +68,16 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         titleSizeSelector.setAdapter(adapter);
         contentSizeSelector.setAdapter(adapter);
 
+        titleSizeSelector.setSelection(12);
+        contentSizeSelector.setSelection(7);
+
+
+
         titleSizeSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                 title.setTextSize(textSizes[position]);
             }
 
@@ -79,11 +91,13 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
                 content.setTextSize(textSizes[i]);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
 
             }
         });
@@ -92,13 +106,14 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
             @Override
             public void onClick(View view) {
 
+                pb.setVisibility(View.VISIBLE);
+
                 final AlertDialog.Builder alert = new AlertDialog.Builder(makeJournal.this);
                 View mview = getLayoutInflater().inflate(R.layout.add_diary_dialog,null);
 
                 RelativeLayout rootLayout = mview.findViewById(R.id.dialogLayout);
-                LinearLayout expandableCalLayout = mview.findViewById(R.id.dropDownSectionDialog);
                 MaterialButton okButton = mview.findViewById(R.id.okButtonAddNewDialog);
-                MaterialButton moreButton = mview.findViewById(R.id.moreButtonAddNewDialog);
+                MaterialButton cancelButton = mview.findViewById(R.id.cancelButtonAddNewDialog);
                 CalendarView calendar = mview.findViewById(R.id.calViewForDialog);
 
 
@@ -111,23 +126,12 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 alertDialog.setCanceledOnTouchOutside(true);
 
-                final boolean[] expanded = {false};
-
-                moreButton.setOnClickListener(new View.OnClickListener() {
+                cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        if(expanded[0] == false) {
-
-                            TransitionManager.beginDelayedTransition(rootLayout, transition);
-
-                            calendar.setVisibility(View.VISIBLE);
-                            expanded[0] = true;
-                        }
-                        else {
-                            calendar.setVisibility(View.GONE);
-                            expanded[0] = false;
-                        }
+                        pb.setVisibility(View.GONE);
+                        alertDialog.dismiss();
                     }
                 });
 
@@ -135,8 +139,15 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                     @Override
                     public void onClick(View view) {
 
-                        String date = calendar.getFirstSelectedDate().toString();
-                        Toast.makeText(makeJournal.this, date, Toast.LENGTH_SHORT).show();
+                        Calendar date = calendar.getFirstSelectedDate();
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        String curr = dateFormat.format(date.getTime());
+
+                        Toast.makeText(makeJournal.this, curr, Toast.LENGTH_SHORT).show();
+
+                        pb.setVisibility(View.GONE);
+                        alertDialog.dismiss();
                     }
                 });
 

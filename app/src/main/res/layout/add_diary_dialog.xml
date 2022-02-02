@@ -53,16 +53,16 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/moreButtonAddNewDialog"
+                    android:id="@+id/cancelButtonAddNewDialog"
                     android:layout_weight="1"
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:textSize="12sp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/bgcolor"
                     app:backgroundTint="@color/white"
                     app:cornerRadius="20dp"
                     android:text="cancel"
-                    android:layout_margin="20dp"
+                    android:layout_margin="5dp"
                     android:drawableRight="@drawable/close_icon"
                     android:drawableTint="@color/bgcolor"
                     />
@@ -70,14 +70,14 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/okButtonAddNewDialog"
                     android:layout_weight="1"
-                    android:layout_width="40dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/bgcolor"
                     app:backgroundTint="@color/white"
                     app:cornerRadius="20dp"
                     android:textSize="12sp"
                     android:text="ok"
-                    android:layout_margin="20dp"
+                    android:layout_margin="5dp"
                     android:drawableRight="@drawable/tick_icon"
                     android:drawableTint="@color/bgcolor"
                     />

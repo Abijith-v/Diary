@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".frags.homeFrag">
 
+    <RelativeLayout
+        android:background="@color/darker_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            tools:listitem="@layout/home_list_singleitem"
+            />
+
+
+    </RelativeLayout>
+
 
 
 </RelativeLayout>

@@ -7,15 +7,16 @@
     android:background="@color/darker_white"
     tools:context=".MainActivity">
 
+
     <RelativeLayout
         android:background="@color/darker_white"
         android:id="@+id/navbar_frag_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navbar">
+        android:layout_above="@+id/bottom_navbar"
+        android:layout_centerInParent="true"
+        />
 
-
-    </RelativeLayout>
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
 

@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import static android.net.sip.SipErrorCode.TIME_OUT;
-
 public class splash extends AppCompatActivity {
 
     @Override

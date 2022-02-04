@@ -24,6 +24,11 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
 
         <ImageView
             android:id="@+id/closeMakeJournal"
@@ -37,6 +42,25 @@
             android:focusable="true"
             android:layout_margin="10dp"
             android:scaleX="1.2" />
+
+
+        <ImageView
+            android:id="@+id/deleteBtnMakeJournal"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete_icon"
+            android:padding="5dp"
+            android:scaleY="1.2"
+            android:tint="@color/bgcolor"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="10dp"
+            android:scaleX="1.2" />
+
+
+        </LinearLayout>
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/todaysDateInTopBar"
@@ -54,6 +78,7 @@
 
 
         <ImageView
+            android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/tick_icon"

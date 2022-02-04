@@ -1,38 +1,29 @@
 package com.example.diary;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionManager;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import com.applandeo.materialcalendarview.CalendarView;
+import com.example.diary.database.MainAdapter;
+import com.example.diary.database.MainData;
+import com.example.diary.database.RoomDB;
 import com.example.diary.frags.calendarFrag;
 import com.example.diary.frags.homeFrag;
 import com.example.diary.frags.settingsFrag;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
-import org.jetbrains.annotations.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
-import io.ak1.BubbleTabBar;
-import io.ak1.OnBubbleClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        selectBottomMenuFrag();
     }
 
     @Override
@@ -51,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         navbar = findViewById(R.id.bottom_navbar);
         addFab = findViewById(R.id.addFabInHome);
+
 
         navbar.setItemSelected(R.id.bottom_nav_home, true);
         getSupportFragmentManager().beginTransaction().replace(R.id.navbar_frag_container, new homeFrag()).commit();

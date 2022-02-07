@@ -280,8 +280,32 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
             @Override
             public void onClick(View view) {
 
-                db.mainDAO().delete(currData);
-                finish();
+                BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(makeJournal.this)
+                        .setTitle("Delete?")
+                        .setMessage("Are you sure you wanna delete this journal?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", R.drawable.tick_icon, new MaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
+
+
+                                db.mainDAO().delete(currData);
+                                dialogInterface.dismiss();
+
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Cancel", R.drawable.cancel_icon, new MaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
+
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .build();
+
+                // Show Dialog
+                mDialog.show();
             }
         });
 

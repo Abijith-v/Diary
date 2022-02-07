@@ -35,7 +35,6 @@ public class homeFrag extends Fragment {
     MainAdapter mainAdapter;
 
 
-
     @Override
     public void onResume() {
         super.onResume();

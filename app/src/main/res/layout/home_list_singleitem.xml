@@ -50,7 +50,7 @@
             android:layout_toEndOf="@+id/dateLayoutInItem"
             android:maxLength="30"
             android:text="This can be a long ass text"
-            android:textSize="17sp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/fakeArrowItem"

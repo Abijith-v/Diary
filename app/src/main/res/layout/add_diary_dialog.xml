@@ -29,22 +29,16 @@
                 />
 
 
-            <com.applandeo.materialcalendarview.CalendarView
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:visibility="visible"
                 android:id="@+id/calViewForDialog"
                 android:layout_width="wrap_content"
-                app:todayLabelColor="@color/darker_white"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                app:headerColor="@color/bgcolor"
-                app:selectionColor="@color/white"
-                app:pagesColor="@color/bgcolor"
-                app:abbreviationsBarColor="@color/bgcolor"
-                app:daysLabelsColor="@color/white"
-                app:headerLabelColor="@color/white"
-                app:abbreviationsLabelsColor="@color/white"
-                app:selectionLabelColor="@color/bgcolor"
-                app:type="one_day_picker"
+                app:mcv_selectionColor="@color/white"
+                app:mcv_dateTextAppearance="@style/customdatetheme"
+                app:mcv_headerTextAppearance="@style/customdateheadingtheme"
+                app:mcv_weekDayTextAppearance="@style/customdateweektheme"
+                app:mcv_arrowColor="@color/white"
                 />
 
 

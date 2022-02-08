@@ -12,6 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         app:mcv_selectionColor="@color/bgcolor"
+        app:mcv_dateTextAppearance="@style/customdatethemeForCalendarFrag"
+        app:mcv_headerTextAppearance="@style/customdateheadingthemeForCalendarFrag"
+        app:mcv_weekDayTextAppearance="@style/customdateweekthemeForCalendarFrag"
         app:mcv_tileSize="0dp"
         />
 

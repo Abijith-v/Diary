@@ -55,7 +55,8 @@ public interface MainDAO {
     @Query("select count(*) from diary_table")
     int getRowCount();
 
-
-
+    //get rows of particular date
+    @Query("select * from diary_table where date = :reqDate")
+    List<MainData> getDataFromDate(String reqDate);
 
 }

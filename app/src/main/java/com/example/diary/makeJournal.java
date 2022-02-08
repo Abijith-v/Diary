@@ -32,10 +32,13 @@ import com.google.android.material.textview.MaterialTextView;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 import com.jaredrummler.android.colorpicker.ColorPickerView;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
@@ -78,6 +81,8 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         db = RoomDB.getInstance(this);
 
         Intent intent = getIntent();
+
+        String dateFromCalendarFrag = (String) intent.getSerializableExtra("dateFromCalendarFrag");
         MainData currData = (MainData) intent.getSerializableExtra("mainData_Object");
 
         Integer textSizes[] = new Integer[30];
@@ -112,10 +117,11 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
 
             deleteBtn.setVisibility(View.GONE);
             Date d = Calendar.getInstance().getTime();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
 
-            dateSelector.setText(simpleDateFormat.format(d));
+            dateSelector.setText(dateFromCalendarFrag == null ? simpleDateFormat.format(d) : dateFromCalendarFrag);
         }
+
         titleSizeSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -159,12 +165,12 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                 RelativeLayout rootLayout = mview.findViewById(R.id.dialogLayout);
                 MaterialButton okButton = mview.findViewById(R.id.okButtonAddNewDialog);
                 MaterialButton cancelButton = mview.findViewById(R.id.cancelButtonAddNewDialog);
-                CalendarView calendar = mview.findViewById(R.id.calViewForDialog);
+                MaterialCalendarView calendarView = mview.findViewById(R.id.calViewForDialog);
 
 
                 Transition transition = new Slide(Gravity.TOP);
                 transition.setDuration(700);
-                transition.addTarget(calendar);
+                transition.addTarget(calendarView);
 
                 alert.setView(mview);
                 final AlertDialog alertDialog = alert.create();
@@ -184,10 +190,11 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                     @Override
                     public void onClick(View view) {
 
-                        Calendar date = calendar.getFirstSelectedDate();
+                        CalendarDay calendarDay = calendarView.getSelectedDate();
 
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("\"dd MMM yyyy\"");
-                        String curr = dateFormat.format(date.getTime());
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+
+                        String curr = simpleDateFormat.format(calendarDay.getDate());
 
                         dateSelector.setText(curr);
 

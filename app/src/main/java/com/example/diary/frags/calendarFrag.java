@@ -106,11 +106,38 @@ public class calendarFrag extends Fragment {
                         @Override
                         public void onDateLongClick(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date) {
 
-                            Intent makeJIntent = new Intent(getActivity(), makeJournal.class);
-                            makeJIntent.putExtra("dateFromCalendarFrag", currDateInStr);
-                            startActivity(makeJIntent);
+
+                            BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(getActivity())
+                                    .setTitle("Add a journal?")
+                                    .setMessage("Do you want to write a new journal?")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes", R.drawable.tick_icon, new MaterialDialog.OnClickListener() {
+                                        @Override
+                                        public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
+
+                                            Intent makeJIntent = new Intent(getActivity(), makeJournal.class);
+                                            makeJIntent.putExtra("dateFromCalendarFrag", currDateInStr);
+                                            startActivity(makeJIntent);
+
+                                            dialogInterface.dismiss();
+                                        }
+                                    })
+                                    .setNegativeButton("Cancel", R.drawable.close_icon, new MaterialDialog.OnClickListener() {
+                                        @Override
+                                        public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
+
+                                            dialogInterface.dismiss();
+                                        }
+                                    })
+                                    .setAnimation(R.raw.night_sky)
+                                    .build();
+
+                            // Show Dialog
+                            mDialog.show();
+
                         }
                     });
+
                     return;
                 }
 

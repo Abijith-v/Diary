@@ -20,9 +20,15 @@ import com.example.diary.database.MainData;
 import com.example.diary.database.RoomDB;
 import com.example.diary.makeJournal;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class homeFrag extends Fragment {
 
@@ -41,14 +47,47 @@ public class homeFrag extends Fragment {
 
         Log.d("Home frag : ", "resumed");
 
+        if(makeJournal.updated)
+            Log.d("changed", " confirmed ");
+
         if(makeJournal.updated || DB.mainDAO().getRowCount() != dataList.size()) {
             dataList = DB.mainDAO().getAll();
 
-            Collections.reverse(dataList);
+            sortDates();
 
             mainAdapter = new MainAdapter(getActivity(), dataList);
             recyclerView.setAdapter(mainAdapter);
         }
+
+    }
+
+    private void sortDates() {
+
+        DateFormat format = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        Collections.sort(dataList, new Comparator<MainData>() {
+            @Override
+            public int compare(MainData a, MainData b) {
+
+                String dateAstring = a.getDate();
+                String dateBstring = b.getDate();
+
+                Date dateA = null;
+                try {
+                    dateA = format.parse(dateAstring);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Date dateB = null;
+                try {
+                    dateB = format.parse(dateBstring);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                return dateA.before(dateB) ? 1 : -1;
+            }
+        });
     }
 
 
@@ -73,7 +112,10 @@ public class homeFrag extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        Collections.reverse(dataList);
+//
+//        Collections.reverse(dataList);
+
+        sortDates();
 
         mainAdapter = new MainAdapter(getActivity(), dataList);
         recyclerView.setAdapter(mainAdapter);

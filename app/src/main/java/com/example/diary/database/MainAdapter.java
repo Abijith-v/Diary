@@ -56,6 +56,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         holder.date.setText(mainData.getDate());
         holder.title.setText(mainData.getTitle());
+//
+//        if(mainData.getDate().charAt(0) == '1') {
+//
+//            RelativeLayout.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) holder.relativeLayout.getLayoutParams();
+//            layoutParams.setMargins(0, 20, 0, 20);
+//        }
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

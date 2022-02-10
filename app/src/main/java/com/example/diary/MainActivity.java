@@ -1,14 +1,17 @@
 package com.example.diary;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.diary.database.MainAdapter;
 import com.example.diary.database.MainData;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     ChipNavigationBar navbar;
     FloatingActionButton addFab;
+    RelativeLayout layout;
+    int bgColor, whiteBG;
 
     @Override
     protected void onResume() {
@@ -44,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         navbar = findViewById(R.id.bottom_navbar);
         addFab = findViewById(R.id.addFabInHome);
+        layout = findViewById(R.id.mainActivityLayout);
+
+        bgColor = ContextCompat.getColor(this, R.color.bgcolor);
+        whiteBG  = ContextCompat.getColor(this, R.color.darker_white);
 
 
         navbar.setItemSelected(R.id.bottom_nav_home, true);
@@ -148,19 +157,23 @@ public class MainActivity extends AppCompatActivity {
                 Fragment frag = null;
                 switch (i) {
                     case R.id.bottom_nav_home:
-
+                        addFab.setVisibility(View.VISIBLE);
                         frag = new homeFrag();
                         break;
                     case R.id.bottom_nav_calander:
+                        addFab.setVisibility(View.INVISIBLE);
                         frag = new calendarFrag();
                         break;
                     case R.id.bottom_nav_settings:
+                        addFab.setVisibility(View.INVISIBLE);
                         frag = new settingsFrag();
                         break;
                 }
                 //set frag to the relative layout with id frag_container
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.navbar_frag_container, frag).commit();
+
+
             }
         });
     }

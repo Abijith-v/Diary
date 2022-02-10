@@ -4,18 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bgcolor"
     tools:context=".frags.calendarFrag">
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendarVIew"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/headingCalendarFrag"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:text="Your timeline"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/white"
+
+        />
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:layout_below="@+id/headingCalendarFrag"
+        android:id="@+id/calendarVIew"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:elevation="20dp"
+        android:padding="10dp"
         app:mcv_selectionColor="@color/bgcolor"
         app:mcv_dateTextAppearance="@style/customdatethemeForCalendarFrag"
         app:mcv_headerTextAppearance="@style/customdateheadingthemeForCalendarFrag"
         app:mcv_weekDayTextAppearance="@style/customdateweekthemeForCalendarFrag"
         app:mcv_tileSize="0dp"
+        android:background="@drawable/semi_round"
+        android:backgroundTint="@color/darker_white"
+        app:mcv_arrowColor="@color/black"
         />
 
 

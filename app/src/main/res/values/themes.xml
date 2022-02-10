@@ -28,6 +28,7 @@
 
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/urbanist_extrabold</item>
 
     </style>
 
@@ -56,6 +57,7 @@
 
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/urbanist_extrabold</item>
 
     </style>
 

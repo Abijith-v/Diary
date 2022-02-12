@@ -27,6 +27,7 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.example.diary.database.MainData;
 import com.example.diary.database.RoomDB;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
@@ -86,7 +87,7 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         MainData currData = (MainData) intent.getSerializableExtra("mainData_Object");
 
         Integer textSizes[] = new Integer[30];
-        for(int i = 0, size = 2; i < 30; i++, size += 2) {
+        for (int i = 0, size = 2; i < 30; i++, size += 2) {
             textSizes[i] = size;
         }
 
@@ -98,7 +99,7 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         contentSizeSelector.setSelection(7);
 
 
-        if(currData != null) {
+        if (currData != null) {
 
             dateSelector.setCompoundDrawables(null, null, null, null);
             deleteBtn.setVisibility(View.VISIBLE);
@@ -112,8 +113,7 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
 
             titleSizeSelector.setSelection(currData.getTitleTextSize());
             contentSizeSelector.setSelection(currData.getContentTextSize());
-        }
-        else {
+        } else {
 
             deleteBtn.setVisibility(View.GONE);
             Date d = Calendar.getInstance().getTime();
@@ -155,12 +155,12 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
             @Override
             public void onClick(View view) {
 
-                if(currData != null) return;
+                if (currData != null) return;
 
                 pb.setVisibility(View.VISIBLE);
 
                 final AlertDialog.Builder alert = new AlertDialog.Builder(makeJournal.this);
-                View mview = getLayoutInflater().inflate(R.layout.add_diary_dialog,null);
+                View mview = getLayoutInflater().inflate(R.layout.add_diary_dialog, null);
 
                 RelativeLayout rootLayout = mview.findViewById(R.id.dialogLayout);
                 MaterialButton okButton = mview.findViewById(R.id.okButtonAddNewDialog);
@@ -168,9 +168,9 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                 MaterialCalendarView calendarView = mview.findViewById(R.id.calViewForDialog);
 
 
-                Transition transition = new Slide(Gravity.TOP);
-                transition.setDuration(700);
-                transition.addTarget(calendarView);
+//                Transition transition = new Slide(Gravity.TOP);
+//                transition.setDuration(700);
+//                transition.addTarget(calendarView);
 
                 alert.setView(mview);
                 final AlertDialog alertDialog = alert.create();
@@ -250,35 +250,13 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                 int titleSizePos = titleSizeSelector.getSelectedItemPosition();
                 int contentSizePos = contentSizeSelector.getSelectedItemPosition();
 
-                if(!valid(titleStr, contentStr)) {
+                if (!valid(titleStr, contentStr)) {
 
                     Toast.makeText(makeJournal.this, "Please type something!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(makeJournal.this)
-                        .setTitle(currData == null ? "Save?" : "Make changes?")
-                        .setMessage(currData == null ? "Do you want to save this journal?" : "Save the new changes made?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", R.drawable.tick_icon, new MaterialDialog.OnClickListener() {
-                            @Override
-                            public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
-
-                                saveIntoRoom(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date);
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .setNegativeButton("Cancel", R.drawable.cancel_icon, new MaterialDialog.OnClickListener() {
-                            @Override
-                            public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
-
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .build();
-
-                // Show Dialog
-                mDialog.show();
+                showDialog(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date);
 
             }
         });
@@ -318,10 +296,111 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
 
     }
 
-    private void saveIntoRoom(MainData currData, String contentStr, int contenColor, int contentSizePos, String titleStr, int titleSizePos, int titleColor, String date) {
+    private void showBottomDialog(MainData currData, String contentStr, int contenColor, int contentSizePos, String titleStr, int titleSizePos, int titleColor, String date, int emoji) {
+
+        BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(makeJournal.this)
+                .setTitle(currData == null ? "Save?" : "Make changes?")
+                .setMessage(currData == null ? "Do you want to save this journal?" : "Save the new changes made?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", R.drawable.tick_icon, new MaterialDialog.OnClickListener() {
+                    @Override
+                    public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
+
+                        // ask for mood
+
+                        saveIntoRoom(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date, emoji);
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setNegativeButton("Cancel", R.drawable.cancel_icon, new MaterialDialog.OnClickListener() {
+                    @Override
+                    public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
+
+                        dialogInterface.dismiss();
+                    }
+                })
+                .build();
+
+        // Show Dialog
+        mDialog.show();
+    }
+
+    private void showDialog(MainData currData, String contentStr, int contenColor, int contentSizePos, String titleStr, int titleSizePos, int titleColor, String date) {
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(makeJournal.this);
+        View mview = getLayoutInflater().inflate(R.layout.mood_emoji_dialog, null);
+
+        MaterialCardView coolEmoji = mview.findViewById(R.id.coolEmojiIcon);
+        MaterialCardView happyEmoji = mview.findViewById(R.id.happyEmojiIcon);
+        MaterialCardView mehEmoji = mview.findViewById(R.id.neutralEmojiIcon);
+        MaterialCardView sadEmoji = mview.findViewById(R.id.sadEmojiIcon);
+        MaterialCardView angryEmoji = mview.findViewById(R.id.angryEmojiIcon);
+
+
+        alert.setView(mview);
+        final AlertDialog alertDialog = alert.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCanceledOnTouchOutside(true);
+
+        coolEmoji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alertDialog.dismiss();
+
+                showBottomDialog(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date, 0);
+            }
+        });
+
+        happyEmoji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alertDialog.dismiss();
+
+                showBottomDialog(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date, 1);
+            }
+        });
+
+        mehEmoji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alertDialog.dismiss();
+
+                showBottomDialog(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date, 2);
+            }
+        });
+
+        sadEmoji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alertDialog.dismiss();
+
+                showBottomDialog(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date, 3);
+            }
+        });
+
+        angryEmoji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alertDialog.dismiss();
+
+                showBottomDialog(currData, contentStr, contenColor, contentSizePos, titleStr, titleSizePos, titleColor, date, 4);
+
+            }
+        });
+
+
+        alertDialog.show();
+    }
+
+    private void saveIntoRoom(MainData currData, String contentStr, int contenColor, int contentSizePos, String titleStr, int titleSizePos, int titleColor, String date, int emoji) {
 
         // If we are editing already existing diary, just update
-        if(currData != null) {
+        if (currData != null) {
 
             int ID = currData.getID();
 
@@ -355,9 +434,9 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         mainData.setTitleTextColor(titleColor);
         mainData.setTitleTextSize(titleSizePos);
 
+        mainData.setMoodEmoji(emoji);
+
         db.mainDAO().insert(mainData);
-
-
 
         Toast.makeText(makeJournal.this, "saved!", Toast.LENGTH_SHORT).show();
 
@@ -371,15 +450,18 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
     }
 
 
-    @Override public void onColorSelected(int dialogId, int color) {
+    @Override
+    public void onColorSelected(int dialogId, int color) {
 
-        if(dialogId == DIALOG_ID) {
+        if (dialogId == DIALOG_ID) {
 
             Toast.makeText(this, Integer.toHexString(color), Toast.LENGTH_SHORT).show();
             (contentSelected ? content : title).setTextColor(color);
         }
     }
-    @Override public void onDialogDismissed(int dialogId) {
+
+    @Override
+    public void onDialogDismissed(int dialogId) {
 
 //        Toast.makeText(this, "dismissed BC", Toast.LENGTH_SHORT).show();
     }

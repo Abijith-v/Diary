@@ -36,6 +36,9 @@ public class MainData implements Serializable {
     @ColumnInfo(name = "contentTextColor")
     private int contentTextColor;
 
+    @ColumnInfo(name = "moodEmoji")
+    private int moodEmoji;
+
     public int getID() {
         return ID;
     }
@@ -98,5 +101,13 @@ public class MainData implements Serializable {
 
     public void setContentTextColor(int contentTextColor) {
         this.contentTextColor = contentTextColor;
+    }
+
+    public int getMoodEmoji() {
+        return moodEmoji;
+    }
+
+    public void setMoodEmoji(int moodEmoji) {
+        this.moodEmoji = moodEmoji;
     }
 }

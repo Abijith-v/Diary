@@ -9,10 +9,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.diary.R;
 import com.example.diary.database.MainAdapter;
@@ -39,7 +49,9 @@ public class homeFrag extends Fragment {
     LinearLayoutManager linearLayoutManager;
     RoomDB DB;
     MainAdapter mainAdapter;
-
+    EditText searchBar;
+    ImageView searchIcon;
+    RelativeLayout parentLayout;
 
     @Override
     public void onResume() {
@@ -101,26 +113,81 @@ public class homeFrag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_homepage);
+        searchBar = view.findViewById(R.id.searchBarHomeFrag);
+        searchIcon = view.findViewById(R.id.searchIcon);
+        parentLayout = view.findViewById(R.id.HomeParentLaout);
 
         DB = RoomDB.getInstance(getActivity());
         dataList = DB.mainDAO().getAll(); // select * from table
 
-//        for(MainData md : dataList) {
-//            Log.d("data : ", md.getDate());
-//        }
-
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-
-//
-//        Collections.reverse(dataList);
 
         sortDates();
 
         mainAdapter = new MainAdapter(getActivity(), dataList);
         recyclerView.setAdapter(mainAdapter);
 
+//        Transition transition = new Slide(Gravity.TOP);
+//        transition.setDuration(700);
+//        transition.addTarget(searchBar);
+//
+//        TransitionManager.beginDelayedTransition(parentLayout, transition);
+
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(searchBar.getVisibility() == View.VISIBLE) {
+                    searchBar.setVisibility(View.GONE);
+                }
+                else {
+                    searchBar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                filter(searchBar.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
 
         return view;
+    }
+
+    private void filter(String input) {
+
+        if(!input.isEmpty()) {
+
+            List<MainData> newList = new ArrayList<MainData>();
+            for(MainData md : dataList) {
+
+                if(md.getTitle().toUpperCase().trim().contains(input.toUpperCase().trim()) ||
+                        md.getDate().toUpperCase().trim().contains(input.toUpperCase().trim())) {
+                    newList.add(md);
+                }
+            }
+
+            MainAdapter newAdapter = new MainAdapter(getActivity(), newList);
+            recyclerView.setAdapter(newAdapter);
+        }
+        else
+            recyclerView.setAdapter(mainAdapter);
+
+        mainAdapter.notifyDataSetChanged();
     }
 }

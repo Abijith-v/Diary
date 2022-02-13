@@ -8,16 +8,22 @@
     android:background="@color/darker_white"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg3"
+        android:scaleType="centerCrop"
+        android:tintMode="multiply"
+        android:tint="@color/ripplecolor"/>
 
     <RelativeLayout
-        android:background="@color/darker_white"
+        android:background="@android:color/transparent"
         android:id="@+id/navbar_frag_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navbar"
         android:layout_centerInParent="true"
         />
-
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
 

@@ -168,10 +168,6 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
                 MaterialCalendarView calendarView = mview.findViewById(R.id.calViewForDialog);
 
 
-//                Transition transition = new Slide(Gravity.TOP);
-//                transition.setDuration(700);
-//                transition.addTarget(calendarView);
-
                 alert.setView(mview);
                 final AlertDialog alertDialog = alert.create();
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -330,11 +326,11 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
         final AlertDialog.Builder alert = new AlertDialog.Builder(makeJournal.this);
         View mview = getLayoutInflater().inflate(R.layout.mood_emoji_dialog, null);
 
-        MaterialCardView coolEmoji = mview.findViewById(R.id.coolEmojiIcon);
-        MaterialCardView happyEmoji = mview.findViewById(R.id.happyEmojiIcon);
-        MaterialCardView mehEmoji = mview.findViewById(R.id.neutralEmojiIcon);
-        MaterialCardView sadEmoji = mview.findViewById(R.id.sadEmojiIcon);
-        MaterialCardView angryEmoji = mview.findViewById(R.id.angryEmojiIcon);
+        ImageView coolEmoji = mview.findViewById(R.id.coolEmojiIcon);
+        ImageView happyEmoji = mview.findViewById(R.id.happyEmojiIcon);
+        ImageView mehEmoji = mview.findViewById(R.id.neutralEmojiIcon);
+        ImageView sadEmoji = mview.findViewById(R.id.sadEmojiIcon);
+        ImageView angryEmoji = mview.findViewById(R.id.angryEmojiIcon);
 
 
         alert.setView(mview);

@@ -30,102 +30,74 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
                 android:id="@+id/coolEmojiIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                app:cardCornerRadius="40dp"
-                android:elevation="0dp"
-                app:rippleColor="@color/ripplecolor">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/cool_emoji"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:src="@drawable/sample_emoji" />
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
                 android:id="@+id/happyEmojiIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                app:cardCornerRadius="40dp"
-                android:elevation="0dp"
-                app:rippleColor="@color/ripplecolor">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/happy_emoji"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:src="@drawable/sample_emoji" />
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
                 android:id="@+id/neutralEmojiIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                app:cardCornerRadius="40dp"
-                app:rippleColor="@color/ripplecolor">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/meh_emoji"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:src="@drawable/sample_emoji" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
                 android:id="@+id/sadEmojiIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                app:cardCornerRadius="40dp"
-                app:rippleColor="@color/ripplecolor">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/sad_emoji"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:src="@drawable/sample_emoji" />
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <ImageView
                 android:id="@+id/angryEmojiIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                app:cardCornerRadius="40dp"
-                app:rippleColor="@color/ripplecolor">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/angry_emoji"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="5dp"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:src="@drawable/sample_emoji" />
-
-            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

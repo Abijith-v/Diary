@@ -37,7 +37,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         this.dataList = arList;
         this.context = context;
 
-        emojis = new int[] {R.drawable.sample_emoji, R.drawable.calendar_icon, R.drawable.color_palette_icon, R.drawable.add_icon, R.drawable.cancel_icon, R.drawable.cancel_icon};
+        emojis = new int[] {R.drawable.cool_emoji, R.drawable.happy_emoji, R.drawable.meh_emoji, R.drawable.sad_emoji, R.drawable.angry_emoji};
 
         notifyDataSetChanged();
     }
@@ -106,51 +106,4 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         }
     }
 
-//
-//    private Filter records;
-//
-//    @Override
-//    public Filter getFilter() {
-//
-//        if(records == null)
-//            records = new RecordFilter();
-//
-//        return records;
-//    }
-//
-//    private class RecordFilter extends Filter {
-//        @Override
-//        protected FilterResults performFiltering(CharSequence charSequence) {
-//
-//            FilterResults results = new FilterResults();
-//            if(charSequence == null || charSequence.length() == 0) {
-//
-//                results.values = dataList;
-//                results.count = dataList.size();
-//            }
-//            else {
-//
-//                List<MainData> newList = new ArrayList<MainData>();
-//                for(MainData md : dataList) {
-//
-//                    if(md.getTitle().toUpperCase().trim().contains(charSequence.toString().toUpperCase().trim()) ||
-//                            md.getDate().toUpperCase().trim().contains(charSequence.toString().toUpperCase().trim())) {
-//                        newList.add(md);
-//                    }
-//                }
-//
-//                results.values = newList;
-//                results.count = newList.size();
-//            }
-//
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-//
-//            dataList = (List<MainData>) filterResults.values;
-//            notifyDataSetChanged();
-//        }
-//    }
 }

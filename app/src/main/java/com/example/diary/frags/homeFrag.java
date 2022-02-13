@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class homeFrag extends Fragment {
 
     List<MainData> dataList = new ArrayList<MainData>();
     LinearLayoutManager linearLayoutManager;
+    LinearLayout lottieContainer;
     RoomDB DB;
     MainAdapter mainAdapter;
     EditText searchBar;
@@ -57,12 +59,7 @@ public class homeFrag extends Fragment {
     public void onResume() {
         super.onResume();
 
-        Log.d("Home frag : ", "resumed");
-
-        if(makeJournal.updated)
-            Log.d("changed", " confirmed ");
-
-        if(makeJournal.updated || DB.mainDAO().getRowCount() != dataList.size()) {
+        if (makeJournal.updated || DB.mainDAO().getRowCount() != dataList.size()) {
             dataList = DB.mainDAO().getAll();
 
             sortDates();
@@ -70,6 +67,8 @@ public class homeFrag extends Fragment {
             mainAdapter = new MainAdapter(getActivity(), dataList);
             recyclerView.setAdapter(mainAdapter);
         }
+
+        lottieContainer.setVisibility(dataList.isEmpty() ? View.VISIBLE : View.GONE);
 
     }
 
@@ -116,11 +115,15 @@ public class homeFrag extends Fragment {
         searchBar = view.findViewById(R.id.searchBarHomeFrag);
         searchIcon = view.findViewById(R.id.searchIcon);
         parentLayout = view.findViewById(R.id.HomeParentLaout);
+        lottieContainer = view.findViewById(R.id.emptyLottieHomeFrag);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
 
         DB = RoomDB.getInstance(getActivity());
         dataList = DB.mainDAO().getAll(); // select * from table
 
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+
+        lottieContainer.setVisibility(dataList.isEmpty() ? View.VISIBLE : View.GONE);
+
         recyclerView.setLayoutManager(linearLayoutManager);
 
         sortDates();
@@ -128,20 +131,14 @@ public class homeFrag extends Fragment {
         mainAdapter = new MainAdapter(getActivity(), dataList);
         recyclerView.setAdapter(mainAdapter);
 
-//        Transition transition = new Slide(Gravity.TOP);
-//        transition.setDuration(700);
-//        transition.addTarget(searchBar);
-//
-//        TransitionManager.beginDelayedTransition(parentLayout, transition);
 
         searchIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(searchBar.getVisibility() == View.VISIBLE) {
+                if (searchBar.getVisibility() == View.VISIBLE) {
                     searchBar.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     searchBar.setVisibility(View.VISIBLE);
                 }
             }
@@ -171,12 +168,12 @@ public class homeFrag extends Fragment {
 
     private void filter(String input) {
 
-        if(!input.isEmpty()) {
+        if (!input.isEmpty()) {
 
             List<MainData> newList = new ArrayList<MainData>();
-            for(MainData md : dataList) {
+            for (MainData md : dataList) {
 
-                if(md.getTitle().toUpperCase().trim().contains(input.toUpperCase().trim()) ||
+                if (md.getTitle().toUpperCase().trim().contains(input.toUpperCase().trim()) ||
                         md.getDate().toUpperCase().trim().contains(input.toUpperCase().trim())) {
                     newList.add(md);
                 }
@@ -184,8 +181,7 @@ public class homeFrag extends Fragment {
 
             MainAdapter newAdapter = new MainAdapter(getActivity(), newList);
             recyclerView.setAdapter(newAdapter);
-        }
-        else
+        } else
             recyclerView.setAdapter(mainAdapter);
 
         mainAdapter.notifyDataSetChanged();

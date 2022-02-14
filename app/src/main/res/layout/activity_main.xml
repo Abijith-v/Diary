@@ -8,13 +8,6 @@
     android:background="@color/darker_white"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/bg3"
-        android:scaleType="centerCrop"
-        android:tintMode="multiply"
-        android:tint="@color/ripplecolor"/>
 
     <RelativeLayout
         android:background="@android:color/transparent"

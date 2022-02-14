@@ -11,12 +11,12 @@ import android.view.ViewGroup;
 import com.example.diary.R;
 
 
-public class settingsFrag extends Fragment {
+public class reportFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        return inflater.inflate(R.layout.fragment_report, container, false);
     }
 }

@@ -407,6 +407,8 @@ public class makeJournal extends AppCompatActivity implements ColorPickerDialogL
             db.mainDAO().updateTitle(ID, titleStr);
             db.mainDAO().updateTitleSize(ID, titleSizePos);
             db.mainDAO().updateTitleTextColor(ID, titleColor);
+            db.mainDAO().updateEmoji(ID, emoji);
+
 
             Toast.makeText(makeJournal.this, "updated!", Toast.LENGTH_SHORT).show();
 

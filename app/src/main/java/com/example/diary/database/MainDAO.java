@@ -45,6 +45,10 @@ public interface MainDAO {
     @Query("update diary_table set contentTextColor = :newContentTextColor where ID = :id")
     void updateContentTextColor(int id, int newContentTextColor);
 
+    // update emoji
+    @Query("update diary_table set moodEmoji = :newEmoji where ID = :id")
+    void updateEmoji(int id, int newEmoji);
+
 
     //get all data query
     @Query("select * from diary_table")

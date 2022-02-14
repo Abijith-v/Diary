@@ -22,8 +22,8 @@
 
     <item
         android:id="@+id/bottom_nav_settings"
-        android:title="Settings"
-        android:icon="@drawable/setting_icon"
+        android:title="Reports"
+        android:icon="@drawable/graph_icon"
         app:cnb_iconColor="@color/white"
         app:cnb_iconTintMode="src_in"
         app:cnb_backgroundColor="@color/bgcolor"

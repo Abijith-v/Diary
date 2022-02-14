@@ -3,27 +3,17 @@ package com.example.diary;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.example.diary.database.MainAdapter;
-import com.example.diary.database.MainData;
-import com.example.diary.database.RoomDB;
 import com.example.diary.frags.calendarFrag;
 import com.example.diary.frags.homeFrag;
-import com.example.diary.frags.settingsFrag;
+import com.example.diary.frags.reportFrag;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
@@ -166,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.bottom_nav_settings:
                         addFab.setVisibility(View.INVISIBLE);
-                        frag = new settingsFrag();
+                        frag = new reportFrag();
                         break;
                 }
                 //set frag to the relative layout with id frag_container

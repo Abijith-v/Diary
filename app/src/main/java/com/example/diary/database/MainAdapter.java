@@ -3,12 +3,14 @@ package com.example.diary.database;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.example.diary.makeJournal;
 //import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
@@ -61,12 +64,33 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         MainData mainData = dataList.get(position);
 
         // set text on text view
+        Boolean titleSet = false;
+        String currTitle = mainData.getTitle();
+        int currLen = currTitle.length();
+
+        if(currLen > 30) {
+
+            char[] charAr = currTitle.toCharArray();
+            for(int i = 1; i <= 3; i++)
+                charAr[30 - i] = '.';
+
+            String newTitle = new String(charAr);
+            holder.title.setText(newTitle);
+
+            Log.d("new title", newTitle);
+
+            titleSet = true;
+        }
+        else if(currLen > 20)
+            holder.title.setTextSize(15);
 
         holder.date.setText(mainData.getDate());
-        holder.title.setText(mainData.getTitle());
+        if(!titleSet) holder.title.setText(currTitle);
+
+
         holder.img.setImageResource(emojis[mainData.getMoodEmoji()]);
 
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -93,7 +117,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         // get variables and view here
 
         TextView date, title;
-        RelativeLayout relativeLayout;
+        LinearLayout linearLayout;
         ImageView img;
 
         public ViewHolder(@NonNull View itemView) {
@@ -101,7 +125,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
             date = itemView.findViewById(R.id.dateSingleItem);
             title = itemView.findViewById(R.id.mainTitleSingleItem);
-            relativeLayout = itemView.findViewById(R.id.fullLayoutSingleItem);
+            linearLayout = itemView.findViewById(R.id.fullLayoutSingleItem);
             img = itemView.findViewById(R.id.emojiHolderRV);
         }
     }

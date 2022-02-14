@@ -35,8 +35,7 @@
         app:mcv_tileSize="0dp"
         android:background="@drawable/semi_round"
         android:backgroundTint="@color/darker_white"
-        app:mcv_arrowColor="@color/black"
-        />
+        app:mcv_arrowColor="@color/black"/>
 
 
 </RelativeLayout>

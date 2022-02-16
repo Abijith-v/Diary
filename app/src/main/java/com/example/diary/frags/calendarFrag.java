@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.applandeo.materialcalendarview.CalendarView;
@@ -47,6 +48,7 @@ public class calendarFrag extends Fragment {
     MaterialCalendarView materialCalendarView;
     List<MainData> dataList;
     RoomDB db;
+    TextView highestStreakTV;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -56,6 +58,9 @@ public class calendarFrag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
         materialCalendarView = view.findViewById(R.id.calendarVIew);
+        highestStreakTV = view.findViewById(R.id.highestStreakCalFrag);
+
+        Log.d("color : ", String.format("#%06X", (0xFFFFFF & highestStreakTV.getCurrentTextColor())));
 
         db = RoomDB.getInstance(getActivity());
         dataList = db.mainDAO().getAll();

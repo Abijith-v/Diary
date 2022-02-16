@@ -1,41 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bgcolor"
+    android:background="@color/darker_white"
     tools:context=".frags.calendarFrag">
 
     <TextView
         android:id="@+id/headingCalendarFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your timeline"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
-        android:textColor="@color/white"
+        android:text="Your timeline"
+        android:textColor="@color/black"
+        android:textSize="25sp"
 
         />
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+    <RelativeLayout
         android:layout_below="@+id/headingCalendarFrag"
-        android:id="@+id/calendarVIew"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:elevation="20dp"
-        android:padding="10dp"
-        app:mcv_selectionColor="@color/bgcolor"
-        app:mcv_dateTextAppearance="@style/customdatethemeForCalendarFrag"
-        app:mcv_headerTextAppearance="@style/customdateheadingthemeForCalendarFrag"
-        app:mcv_weekDayTextAppearance="@style/customdateweekthemeForCalendarFrag"
-        app:mcv_tileSize="0dp"
-        android:background="@drawable/semi_round"
-        android:backgroundTint="@color/darker_white"
-        app:mcv_arrowColor="@color/black"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/streakMaterialCardCalFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            android:elevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="Streak"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="Highest streak"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/highestStreakCalFrag"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/calendarVIew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/streakMaterialCardCalFrag"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="@color/white"
+            android:elevation="2dp"
+            android:padding="20dp"
+            app:mcv_arrowColor="@color/black"
+            app:mcv_dateTextAppearance="@style/customdatethemeForCalendarFrag"
+            app:mcv_headerTextAppearance="@style/customdateheadingthemeForCalendarFrag"
+            app:mcv_selectionColor="@color/bgcolor"
+            app:mcv_tileHeight="0dp"
+            app:mcv_weekDayTextAppearance="@style/customdateweekthemeForCalendarFrag" />
+    </RelativeLayout>
 
 
 </RelativeLayout>

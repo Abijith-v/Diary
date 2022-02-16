@@ -89,5 +89,6 @@ dependencies {
     //material calendar
     implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
 
-
+    //graph and charts
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 }

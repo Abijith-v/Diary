@@ -63,4 +63,8 @@ public interface MainDAO {
     @Query("select * from diary_table where date = :reqDate")
     List<MainData> getDataFromDate(String reqDate);
 
+    //get emoji col
+    @Query("select moodEmoji from diary_table")
+    List<Integer> getEmojiColumn();
+
 }

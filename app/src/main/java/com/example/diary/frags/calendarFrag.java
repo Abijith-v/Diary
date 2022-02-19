@@ -33,8 +33,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +53,7 @@ public class calendarFrag extends Fragment {
     MaterialCalendarView materialCalendarView;
     List<MainData> dataList;
     RoomDB db;
-    TextView highestStreakTV;
+    TextView currStreakTV, highestStreakTV;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -59,6 +64,7 @@ public class calendarFrag extends Fragment {
 
         materialCalendarView = view.findViewById(R.id.calendarVIew);
         highestStreakTV = view.findViewById(R.id.highestStreakCalFrag);
+        currStreakTV = view.findViewById(R.id.streakCountCalFrag);
 
         Log.d("color : ", String.format("#%06X", (0xFFFFFF & highestStreakTV.getCurrentTextColor())));
 
@@ -67,8 +73,10 @@ public class calendarFrag extends Fragment {
 
         HashSet<CalendarDay> datesToBeHighlighted = new HashSet<>();
         HashSet<CalendarDay> repeatedDates = new HashSet<>();
+        List<Date> sortedDates = new ArrayList<>();
 
         DateFormat format = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        // If dates are present in set, mark visited
         for (MainData md : dataList) {
 
             String currDate = md.getDate();
@@ -82,15 +90,69 @@ public class calendarFrag extends Fragment {
             CalendarDay cal = CalendarDay.from(date);
             if (datesToBeHighlighted.contains(cal))
                 repeatedDates.add(cal);
-            else
+            else {
                 datesToBeHighlighted.add(cal);
+                sortedDates.add(date);
+            }
         }
+
+        Collections.sort(sortedDates, new Comparator<Date>() {
+            @Override
+            public int compare(Date a, Date b) {
+                if(a.before(b))
+                    return -1;
+                else
+                    return 1;
+            }
+        });
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+//
+//        for(Date d : sortedDates)
+//            Log.d("sorted date : ", simpleDateFormat.format(d));
+
+        // find max streak and currstreak
+        int sortedDatesSize = sortedDates.size();
+
+        Log.d("dates size", String.valueOf(sortedDatesSize));
+
+        int maxStreak = 0, currStreak = 1;
+        for(int i = 0; i < sortedDatesSize - 1; i++) {
+
+            Date tmrw = new Date(sortedDates.get(i).getTime() + 86400000);
+
+//            Log.d("tmrw", simpleDateFormat.format(sortedDates.get(i + 1)) + " " + simpleDateFormat.format(tmrw) + " " + String.valueOf(simpleDateFormat.format(sortedDates.get(i + 1)) == simpleDateFormat.format(tmrw)));
+
+            if(!sortedDates.get(i + 1).equals(tmrw)) {
+
+                maxStreak = Math.max(maxStreak, currStreak);
+                currStreak = 1;
+            }
+            else
+                currStreak++;
+        }
+
+        Log.d("currStreak",  String.valueOf(currStreak));
+
+        if(!sortedDates.isEmpty())
+            maxStreak = Math.max(maxStreak, currStreak);
+
+        Date today = Calendar.getInstance().getTime();
+        String newToday = simpleDateFormat.format(today);
+        Date yest = new Date(today.getTime() - 86400000);
+        String newYest = simpleDateFormat.format(yest);
+//
+//        Log.d("today and yest",  today + " " + yest + " " + yest.equals(sortedDates.get(sortedDatesSize - 1)));
+
+        if(!sortedDates.isEmpty() && !newYest.equals(simpleDateFormat.format(sortedDates.get(sortedDatesSize - 1))))
+            currStreak = 0;
+
+        highestStreakTV.setText(String.valueOf(maxStreak));
+        currStreakTV.setText(String.valueOf(currStreak));
 
         materialCalendarView.addDecorator(new CalendarDecorator(getActivity(), ContextCompat.getColor(getActivity(), R.color.green), datesToBeHighlighted));
 
         Log.d("green", String.valueOf(ContextCompat.getColor(getActivity(), R.color.green)));
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
 
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override

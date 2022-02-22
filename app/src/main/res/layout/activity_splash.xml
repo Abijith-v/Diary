@@ -43,6 +43,7 @@
 
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/pbSplashScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:indicatorColor="@color/white"
@@ -53,6 +54,23 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
+        />
+
+    <ImageView
+        android:id="@+id/fingerprintTextInSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fingerprint_icon"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:background="?attr/selectableItemBackgroundBorderless"
+
         />
 
 </RelativeLayout>

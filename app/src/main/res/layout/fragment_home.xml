@@ -93,13 +93,12 @@
 
         </LinearLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_homepage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/searchBarHomeFrag"
-            android:layout_margin="5dp"
+            android:padding="10dp"
             tools:listitem="@layout/home_list_singleitem" />
 
 

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.example.diary.MainActivity;
 import com.example.diary.R;
@@ -54,6 +55,7 @@ public class calendarFrag extends Fragment {
     List<MainData> dataList;
     RoomDB db;
     TextView currStreakTV, highestStreakTV;
+    LottieAnimationView fireAnimStreak;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -65,6 +67,7 @@ public class calendarFrag extends Fragment {
         materialCalendarView = view.findViewById(R.id.calendarVIew);
         highestStreakTV = view.findViewById(R.id.highestStreakCalFrag);
         currStreakTV = view.findViewById(R.id.streakCountCalFrag);
+        fireAnimStreak = view.findViewById(R.id.fireLottieNearStreak);
 
         Log.d("color : ", String.format("#%06X", (0xFFFFFF & highestStreakTV.getCurrentTextColor())));
 
@@ -146,6 +149,8 @@ public class calendarFrag extends Fragment {
 
         if(!sortedDates.isEmpty() && !newYest.equals(simpleDateFormat.format(sortedDates.get(sortedDatesSize - 1))))
             currStreak = 0;
+
+        if(currStreak >= 7) fireAnimStreak.setVisibility(View.VISIBLE);
 
         highestStreakTV.setText(String.valueOf(maxStreak));
         currStreakTV.setText(String.valueOf(currStreak));

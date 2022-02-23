@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.example.diary.frags.calendarFrag;
 import com.example.diary.frags.homeFrag;
+import com.example.diary.frags.profileFrag;
 import com.example.diary.frags.reportFrag;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -157,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bottom_nav_settings:
                         addFab.setVisibility(View.INVISIBLE);
                         frag = new reportFrag();
+                        break;
+                    case R.id.bottom_nav_profile:
+                        addFab.setVisibility(View.INVISIBLE);
+                        frag = new profileFrag();
                         break;
                 }
                 //set frag to the relative layout with id frag_container

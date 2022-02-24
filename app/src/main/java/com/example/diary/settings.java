@@ -1,32 +1,27 @@
-package com.example.diary.frags;
+package com.example.diary;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
-import com.example.diary.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-public class profileFrag extends Fragment {
+public class settings extends AppCompatActivity {
+
 
     SwitchMaterial fingerprintSwitch;
     SharedPreferences sharedPreferences;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
 
-        sharedPreferences = getActivity().getSharedPreferences("diaryPref", Context.MODE_PRIVATE);
-        fingerprintSwitch = view.findViewById(R.id.fingerPrintSwitch);
+        sharedPreferences = this.getSharedPreferences("diaryPref", Context.MODE_PRIVATE);
+        fingerprintSwitch = findViewById(R.id.fingerPrintSwitch);
 
         Boolean fingerPrintON = sharedPreferences.getBoolean("fingerPrintActivated", false);
         fingerprintSwitch.setChecked(fingerPrintON);
@@ -39,6 +34,6 @@ public class profileFrag extends Fragment {
             }
         });
 
-        return view;
+
     }
 }

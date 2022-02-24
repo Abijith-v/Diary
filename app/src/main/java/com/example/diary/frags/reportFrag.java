@@ -1,6 +1,7 @@
 package com.example.diary.frags;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.diary.R;
 import com.example.diary.database.RoomDB;
+import com.example.diary.settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,7 @@ public class reportFrag extends Fragment {
     RoomDB roomDB;
     TextView happyCount, coolCount, mehCount, sadCount, angryCount, journalCount;
 
-    ImageView avgEmojiImangeView;
+    ImageView avgEmojiImangeView, settingsIcon;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +71,7 @@ public class reportFrag extends Fragment {
 
         avgEmojiImangeView = view.findViewById(R.id.avgMoodContainer);
         pieChart = view.findViewById(R.id.pieChartReportFrag);
+        settingsIcon = view.findViewById(R.id.settingsIconReportFrag);
 
         //journal count 
         journalCount.setText(String.valueOf(total));
@@ -128,6 +131,13 @@ public class reportFrag extends Fragment {
         pieChartData.setHasCenterCircle(true);
 
         pieChart.setPieChartData(pieChartData);
+
+        settingsIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), settings.class));
+            }
+        });
 
 
         return view;

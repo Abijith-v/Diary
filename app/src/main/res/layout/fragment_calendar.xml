@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="-50dp"
     android:background="@color/darker_white"
     tools:context=".frags.calendarFrag">
 
@@ -13,121 +13,128 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
         android:text="Your timeline"
         android:textColor="@color/black"
-        android:textSize="25sp"
-
+        android:textSize="22sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/streakMaterialCardCalFrag"
         />
 
-    <RelativeLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/streakMaterialCardCalFrag"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/headingCalendarFrag"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="25dp">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:elevation="2dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/calendarLayoutCalFrag"
+        app:layout_constraintTop_toBottomOf="@+id/headingCalendarFrag">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/streakMaterialCardCalFrag"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            android:elevation="2dp"
-            app:cardCornerRadius="20dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Streak"
+                    android:textAlignment="center"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:text="Streak"
-                        android:textAlignment="center"
-                        android:textSize="15sp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-
-                        <TextView
-                            android:id="@+id/streakCountCalFrag"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="0"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:textAlignment="center"
-                            android:textSize="20sp" />
-
-                        <com.airbnb.lottie.LottieAnimationView
-
-                            android:id="@+id/fireLottieNearStreak"
-                            android:visibility="gone"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                             android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@+id/streakCountCalFrag"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/tumbleweed" />
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
+
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:text="Highest streak"
-                        android:textAlignment="center"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/highestStreakCalFrag"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:id="@+id/streakCountCalFrag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
                         android:padding="10dp"
                         android:text="0"
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
+                    <com.airbnb.lottie.LottieAnimationView
 
-                </LinearLayout>
+                        android:id="@+id/fireLottieNearStreak"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/streakCountCalFrag"
+                        android:visibility="gone"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/tumbleweed" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Highest streak"
+                    android:textAlignment="center"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/highestStreakCalFrag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
 
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <RelativeLayout
+        android:id="@+id/calendarLayoutCalFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHeight_max="400dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/streakMaterialCardCalFrag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="20dp"
+        >
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarVIew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/streakMaterialCardCalFrag"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="@color/white"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:elevation="2dp"
             android:padding="20dp"
             app:mcv_arrowColor="@color/black"
@@ -136,7 +143,8 @@
             app:mcv_selectionColor="@color/bgcolor"
             app:mcv_tileHeight="0dp"
             app:mcv_weekDayTextAppearance="@style/customdateweekthemeForCalendarFrag" />
+
     </RelativeLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

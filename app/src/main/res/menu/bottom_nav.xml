@@ -22,17 +22,8 @@
 
     <item
         android:id="@+id/bottom_nav_settings"
-        android:title="Reports"
-        android:icon="@drawable/graph_icon"
-        app:cnb_iconColor="@color/white"
-        app:cnb_iconTintMode="src_in"
-        app:cnb_backgroundColor="@color/bgcolor"
-        />
-
-    <item
-        android:id="@+id/bottom_nav_profile"
         android:title="Profile"
-        android:icon="@drawable/user_icon"
+        android:icon="@drawable/graph_icon"
         app:cnb_iconColor="@color/white"
         app:cnb_iconTintMode="src_in"
         app:cnb_backgroundColor="@color/bgcolor"

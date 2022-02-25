@@ -3,11 +3,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".settings">
 
+    <ImageView
+        android:id="@+id/backButtonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_icon"
+        android:tint="@color/bgcolor"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:padding="5dp"
+
+        android:focusable="true"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="20dp"
+        />
+
+    <TextView
+        android:id="@+id/saveButtonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="@color/bgcolor"
+        android:focusable="true"
+        android:clickable="true"
+        android:textSize="16sp"
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="20dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/userEditLinearLayyoutSettings"
+        app:layout_constraintTop_toBottomOf="@id/saveButtonSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/userIconSettings"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/user_icon"
+            android:tint="@color/bgcolor"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userNameTILSettings"
+            android:layout_width="match_parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/bgcolor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            app:boxStrokeColor="@color/bgcolor"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="3dp"
+
+            app:startIconDrawable="@drawable/pen_icon"
+            app:startIconTint="@color/bgcolor"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/bgcolor"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/EmailForLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bgcolor"
+                android:text="User name"
+                android:maxLength="20"
+                android:textAlignment="center"
+                android:textColorHint="@color/bgcolor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </LinearLayout>
+
 
     <com.google.android.material.card.MaterialCardView
+        app:layout_constraintTop_toBottomOf="@+id/userEditLinearLayyoutSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">

@@ -14,6 +14,9 @@
 
     <color name="green">#D53300</color>
 
+<!-- TIL    -->
 
+    <color name="mtrl_textinput_default_box_stroke_color">@color/bgcolor</color>
+    <color name="mtrl_indicator_text_color">@color/bgcolor</color>
 
 </resources>

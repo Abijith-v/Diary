@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        selectBottomMenuFrag();
+//        selectBottomMenuFrag();
     }
 
     @Override
@@ -166,5 +166,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void refreshFrag(Fragment frag) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.navbar_frag_container, frag).commit();
     }
 }

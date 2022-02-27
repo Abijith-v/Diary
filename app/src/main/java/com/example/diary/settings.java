@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.diary.frags.reportFrag;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -39,7 +40,8 @@ public class settings extends AppCompatActivity {
 
     public settings() {
 
-        profileIcons = new int[] {R.drawable.happy_emoji, R.drawable.happy_emoji, R.drawable.happy_emoji, R.drawable.happy_emoji, R.drawable.happy_emoji, R.drawable.happy_emoji};
+        profileIcons = new int[] {R.drawable.happy_emoji, R.drawable.cool_emoji, R.drawable.happy_emoji, R.drawable.sad_emoji, R.drawable.meh_emoji, R.drawable.angry_emoji};
+
     }
 
     @Override
@@ -79,6 +81,9 @@ public class settings extends AppCompatActivity {
                             public void onClick(dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface dialogInterface, int which) {
 
                                 finish();
+//                                MainActivity ma = new MainActivity();
+//                                ma.refreshFrag(new reportFrag());
+
                                 dialogInterface.dismiss();
                             }
                         })
@@ -168,5 +173,10 @@ public class settings extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

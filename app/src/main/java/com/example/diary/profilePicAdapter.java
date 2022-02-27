@@ -2,6 +2,7 @@ package com.example.diary;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +20,13 @@ public class profilePicAdapter extends RecyclerView.Adapter<profilePicAdapter.Vi
 
     public Context context;
     public int pics[];
+    SharedPreferences sharedPreferences;
 
     public profilePicAdapter(Context context, int pics[]) {
 
         this.context = context;
         this.pics = pics;
-
+        this.sharedPreferences = context.getSharedPreferences("diaryPref", Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -45,7 +47,8 @@ public class profilePicAdapter extends RecyclerView.Adapter<profilePicAdapter.Vi
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+
+                sharedPreferences.edit().putInt("profilePicIndex", position).apply();
             }
         });
     }
@@ -60,6 +63,7 @@ public class profilePicAdapter extends RecyclerView.Adapter<profilePicAdapter.Vi
 
         // get variables and view here
         ImageView img;
+        RecyclerView rv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

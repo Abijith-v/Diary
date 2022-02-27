@@ -2,6 +2,7 @@ package com.example.diary.frags;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -33,11 +34,23 @@ import lecho.lib.hellocharts.view.PieChartView;
 public class reportFrag extends Fragment {
 
     PieChartView pieChart;
-    int colors[];
+    int colors[], pics[];
     RoomDB roomDB;
     TextView happyCount, coolCount, mehCount, sadCount, angryCount, journalCount;
 
-    ImageView avgEmojiImangeView, settingsIcon;
+    SharedPreferences sharedPreferences;
+    ImageView avgEmojiImangeView, settingsIcon, profilePic;
+
+    int picIndex = 0;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        int i = getActivity().getSharedPreferences("diaryPref", Context.MODE_PRIVATE).getInt("profilePicIndex", 0);
+        profilePic.setImageResource(pics[i]);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +59,7 @@ public class reportFrag extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_report, container, false);
 
         roomDB = RoomDB.getInstance(getActivity());
-
+        sharedPreferences = getActivity().getSharedPreferences("diaryPref", Context.MODE_PRIVATE);
 
         List<Integer> emojis = roomDB.mainDAO().getEmojiColumn();
 
@@ -73,7 +86,14 @@ public class reportFrag extends Fragment {
         pieChart = view.findViewById(R.id.pieChartReportFrag);
         settingsIcon = view.findViewById(R.id.settingsIconReportFrag);
 
-        //journal count 
+        profilePic = view.findViewById(R.id.userIconProfileFrag);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("diaryPref", Context.MODE_PRIVATE);
+        picIndex = sharedPreferences.getInt("profilePicIndex", 0);
+
+        pics = new int[] {R.drawable.happy_emoji, R.drawable.cool_emoji, R.drawable.happy_emoji, R.drawable.sad_emoji, R.drawable.meh_emoji, R.drawable.angry_emoji};
+        profilePic.setImageResource(pics[picIndex]);
+
+        //journal count
         journalCount.setText(String.valueOf(total));
 
         // avg emoji

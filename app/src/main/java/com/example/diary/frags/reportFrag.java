@@ -90,7 +90,7 @@ public class reportFrag extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("diaryPref", Context.MODE_PRIVATE);
         picIndex = sharedPreferences.getInt("profilePicIndex", 0);
 
-        pics = new int[] {R.drawable.happy_emoji, R.drawable.cool_emoji, R.drawable.happy_emoji, R.drawable.sad_emoji, R.drawable.meh_emoji, R.drawable.angry_emoji};
+        pics = new int[] {R.drawable.fox, R.drawable.zebra, R.drawable.giraffe, R.drawable.gorilla, R.drawable.koala, R.drawable.parrot, R.drawable.penguin, R.drawable.rabbit};
         profilePic.setImageResource(pics[picIndex]);
 
         //journal count
